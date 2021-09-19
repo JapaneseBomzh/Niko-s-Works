@@ -1,0 +1,30 @@
+userInput = 0
+while True:
+  try:
+     
+    a = int(input("Введите А:"))   
+    oper = input("+,-,*,/")
+    b = int(input("Введите B:"))
+    if oper == "+":      
+      c=a + b       
+      print ("Результат:" + str(c)) 
+      break          
+    elif oper == "-":     
+     c=a - b
+     print ("Результат:" + str(c))
+     break
+    elif oper == "*":
+     c=a * b
+     print ("Результат:" + str(c))
+     break
+    elif oper == "/":    
+      if b == 0:
+         print ("Ошибка! На ноль делить нельзя!")
+         break
+      else :
+         c=a / b
+         print ("Результат:" + str(c))
+         break
+  except ValueError:
+     print("Ошибка! Введён неверный символ")
+     continue
