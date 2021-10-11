@@ -1,0 +1,91 @@
+import random
+import time
+from colorama import Fore
+print(( "loading...")),time.sleep(3)
+list_False =['Чепуха!!','Ноу!', 'Не просто чепуха, а чепуха Ха Ха!!','Абаждите!!!','Заждите-ка!','Если глаза утром были то видно,что ']
+list_True =['Гениально!!','Йес!!','Не правильно , а дуже правильно!!','Не зрозумів, але кажеш правильно!'] 
+list_oper = ['+','-','*','/'] 
+list_start = ['Делайте аккуратно, и всем будет приятно', 'Работаем быстро, как на приёме у министра ','Делаем попа-рядку','Делаем проце-дурочку',
+'Кто-то там у монитора может избавиться то димедрола!','Ну, побрызгайте перед мной интелектом!','Це не проста , а дуже проста!','Кто тормозит , тот паразит']
+list_continue = ['Вкуриваем?','Зрозумило? Дуже міло!','Вопросики? ... Далі крутим педалі','Вкурим, или вдимедролим?']
+list_end =['Конь ец','Гудбай , май лав!']
+list_unend =['Приближаемся к конечику!!','Брызгалка уже иссякает']
+true = 0
+print("." "."".""."".""."".""."".""."".""."".""."".""."".""."  ),print("." "."".""."".""."".""."".""."".""."".""."".""."".""."  ), time.sleep(3)
+time.sleep(3),
+print("loading KOTLYAR V5"),time.sleep(5),print("loading complite!"),time.sleep(1),print(Fore.CYAN+"Добрый день!")
+time.sleep(0.5),print("Ну что , товарищи-матросики , самостоятельная работа!"),time.sleep(1)
+while True:
+   try:
+        N = int(input(Fore.YELLOW+"Cкільки Підра...щитаем? "+Fore.MAGENTA))
+        if N==0:
+          print(Fore.RED+"БАХ!!Напиши натурал!",)
+          continue
+        break
+   except ValueError:
+        print(Fore.RED+"БАХ!!Напиши натурал!",)
+        continue
+time.sleep(1)
+i = 0
+while True: 
+  try:  
+    if i == 0 :      
+            input_var_1 = input(Fore.CYAN+"Ну почнем (press enter)" )
+            i += 1
+    elif  i == N:
+      print(Fore.CYAN+"Приближаемся к конечику!!"),time.sleep(0.75)
+      i += 0.5
+    elif  i > N+1 :
+                print(Fore.YELLOW+"Вгадав",Fore.GREEN+str(true) ,Fore.YELLOW+" з ",Fore.BLUE+str(N) ),time.sleep(1)
+                if true*100 / N <= 50 :
+                  print(Fore.MAGENTA+'З вашим знаннями і дядько Гугло не допоможе!'),time.sleep(0.75)
+                else:
+                  print(Fore.MAGENTA+'Написав дуже прілічно!'),time.sleep(0.75)
+                print(Fore.CYAN+random.choice(list_end))
+                break
+    elif  i >= 1 : 
+        i += 1  
+        a= random.randint(-10, 10)
+        b= random.randint(-10, 10)
+        c = random.choice(list_oper)
+        time.sleep(2)
+        print(Fore.YELLOW+"Скільки буде " ,Fore.MAGENTA+str(a) , c ,Fore.MAGENTA+str(b))
+        print(Fore.CYAN+random.choice(list_start))
+        Personresult = float(input(Fore.LIGHTMAGENTA_EX+">"))
+        if c == "+" : 
+         if a+b == Personresult:
+          print(Fore.GREEN+random.choice(list_True))
+          true += 1
+          continue
+         else :
+          print(Fore.RED+random.choice(list_False)," Ответ не ",Fore.MAGENTA+str(Personresult),Fore.RED+" ,а ",Fore.MAGENTA+str(a+b)),print(Fore.LIGHTGREEN_EX+random.choice(list_continue))
+          continue
+        elif c == "-" : 
+          if a-b == Personresult:
+            print(Fore.GREEN+random.choice(list_True))
+            true += 1
+            continue
+          else :
+            print(Fore.RED+random.choice(list_False)," Ответ не ",Fore.MAGENTA+str(Personresult),Fore.RED+" ,а ",Fore.MAGENTA+str(a-b)),print(Fore.LIGHTGREEN_EX+random.choice(list_continue))
+            continue
+        elif c == "*" : 
+          if a*b == Personresult:
+            print(Fore.GREEN+random.choice(list_True))
+            true += 1
+            continue
+          else :
+            print(Fore.RED+random.choice(list_False)," Ответ не ",Fore.MAGENTA+str(Personresult),Fore.RED+" ,а ",Fore.MAGENTA+str(a*b)),print(Fore.LIGHTGREEN_EX+random.choice(list_continue))
+            continue
+        else : 
+          if b == 0:
+             print(Fore.MAGENTA+" Вкурим, или вдимедролим? Ответ бесконечность!!"),print(random.choice(list_continue))
+          elif a/b == Personresult:
+            print(Fore.GREEN+random.choice(list_True))
+            true += 1
+          else :
+             print(Fore.RED+random.choice(list_False)," Ответ не ",Fore.MAGENTA+str(Personresult),Fore.RED+" ,а ",Fore.MAGENTA+str(a/b)),print(Fore.LIGHTGREEN_EX+random.choice(list_continue))
+             continue
+  except ValueError:
+    print(Fore.RED+"БАХ!!Неправильно написав відповідь!"),print(Fore.LIGHTGREEN_EX+random.choice(list_continue))
+    continue
+input()
