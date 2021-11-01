@@ -30,7 +30,7 @@ while x==1 or x==2:
  try:
   if x ==1:
     filename = "group1.txt"
-    y=input('Читати(r) чи Записати(w)[Off-Вихід]: ')
+    y=input('Читати(r) , Записати(w),Знайти(s)[Off-Вихід]: ')
     if y=="r":
      fd = open(filename,"r") 
      print(fd.read())
@@ -40,13 +40,22 @@ while x==1 or x==2:
      fd.write('\n')
      fd.write(input(">" )) 
      fd.close()
+    elif y=="s" :
+        fd = open(filename,"r")
+        sh = input('Пошук ')
+        read= fd.read()
+        fd.close()
+        if sh in read :
+            print("Є у файлі")
+        else :
+            print("Нема у файлі")
     elif y=="Off":
         break
     else:
      print("ошибка")
   elif x==2:
       filename = "group2.txt"
-      y=input('Читати(r) чи Записати(w)[Off-Вихід]: ')
+      y=input('Читати(r) чи Записати(w)Знайти(s)[Off-Вихід]: ')
       if y=="r":
        fd = open(filename,"r") 
        print(fd.read())
@@ -56,9 +65,20 @@ while x==1 or x==2:
        fd.write('\n')
        fd.write(input(">" )) 
        fd.close()
+      elif y=="s" :
+        fd = open(filename,"r")
+        sh = input('Пошук ')
+        read= fd.read()
+        fd.close()
+        if sh in read :
+            print("Є у файлі")
+        else :
+            print("Нема у файлі")
       elif y=="Off":
         break
       else:
         print("ошибка")
  except ValueError:
      print("Erorr")
+
+    
