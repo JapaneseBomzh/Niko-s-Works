@@ -1,0 +1,60 @@
+class Library():
+    def __init__(self,name,autor,year,book_number):
+        self.name=name
+        self.autor=autor
+        self.year=year
+        self.book_number=book_number
+    def description(self):
+        desc = str(self.book_number) + " " + self.name + " " + self.autor + " " + str(self.year)
+        return desc.title()
+    def del_book(self,book_number):
+        if self.book_number == book_number :
+           del self 
+filename = "Lib.txt"
+fd = open(filename,"+w",encoding ='utf-8')
+print("Добавление книг ")
+while True:
+ try: 
+    i=input("Ввести книгу? ")
+    if i =="1":
+     N=input("Введите Номер книги ")
+     Name=input("Введите Название книги ")
+     Autor=input("Введите Автора книги ")
+     Year=input("Введите Год книги ")
+     N=Library(Name,Autor,Year,N)
+     fd.write(N.description())
+     fd.write("\n")
+     print("Ви ввели ", N.description()) 
+     continue
+    else:
+        break
+ except ValueError:
+     print("error")
+print('Действия с книгами :\nВывести все книги(1)''\n''Удалить книги(2)''\n''Найти книгу(3)''\n''Найти книгу по номеру(4)')
+Type=input("> ")
+if Type=="1":
+    fd = open(filename,"r") 
+    print(fd.read())
+    fd.close()
+elif Type=="2":
+    fd = open(filename,"w") 
+    fd.write()
+    fd.close() 
+elif Type=="3":
+ U=input("Поиск ")
+ fd = open(filename,"r",encoding ='utf-8')
+ read= fd.read() 
+ if U in read :
+    print("Есть у библиотеке")
+ else :
+    print("Нет у библиотеке")
+ fd.close()
+elif Type=="4":
+ U=int(input("Поиск по номеру: "))
+ fd = open(filename,"r",encoding ='utf-8')
+ read= fd.read() 
+ if str(U) in read :
+    print("Есть у библиотеке")
+ else :
+    print("Нет у библиотеке")
+ fd.close() 
