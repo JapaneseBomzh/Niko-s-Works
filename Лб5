@@ -1,3 +1,4 @@
+#1
 class Library():
     def __init__(self,name,autor,year,book_number):
         self.name=name
@@ -58,3 +59,71 @@ elif Type=="4":
  else :
     print("Нет у библиотеке")
  fd.close() 
+ #4
+ import random
+import time
+players=[]
+stol=[] 
+print ('Введите колличество игроков от 1 до 6')
+x=int(input())
+deck=[] 
+values=['6','7','8','9','10','J','Q','K','A'] 
+suits=['Буби','Червы','Пики','Трефы'] 
+ 
+class Card: 
+  def __init__ (self,suit,value): 
+      self.suit=suit
+      self.value=value 
+def gen (): 
+    global deck 
+    for val in values: 
+        for su in suits: 
+            deck.append(Card(su,val)) 
+
+def otobr (Card): 
+     print (Card.suit,Card.value) 
+ 
+
+class Player: 
+  def __init__(self,nomer,karta1, karta2, karta3, karta4, karta5, karta6): 
+          self.nomer=nomer
+          self.karta1=karta1
+          self.karta2=karta2
+          self.karta3=karta3
+          self.karta4=karta4
+          self.karta5=karta5
+          self.karta6=karta6
+def otobrpla(nomer): 
+          print ('Номер игрока:',nomer+1)
+          print ('Его карты:')
+          otobr(players[nomer].karta1),otobr(players[nomer].karta3),otobr(players[nomer].karta4),otobr(players[nomer].karta5),otobr(players[nomer].karta6),otobr(players[nomer].karta2)
+          print ('____________')
+          
+def datkart (nomer): 
+     global players
+     global deck
+     karta1=deck.pop()
+     karta2=deck.pop()
+     karta3=deck.pop()
+     karta4=deck.pop()
+     karta5=deck.pop()
+     karta6=deck.pop()
+     players.append(Player(nomer,karta1,karta2,karta3, karta4, karta5, karta6))
+def genstol (kol): 
+     global deck
+     global stol
+     for i in range(kol):
+          stol.append(deck.pop())
+def otobrstol():   
+   global stol
+   for  i in stol:
+     otobr(i)
+   
+   
+  
+gen() 
+random.shuffle(deck) 
+for i in range (x): 
+  datkart (i)
+  otobrpla(i)
+
