@@ -6,7 +6,7 @@ t = linspace(0, 10, 10000)
 y1 = t**cos(t**2)
 plt.plot(t, y1, label='Y(x)=x^cos(x^2), x=[0...10]')
 # декоративна частина
-plt.xlabel('t')
+plt.xlabel('x')
 plt.ylabel('y')
 plt.title('Варіант 15')
 plt.legend()
