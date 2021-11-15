@@ -11,3 +11,22 @@ plt.ylabel('y')
 plt.title('Варіант 15')
 plt.legend()
 plt.show()
+#2) завдання 2
+import pylab
+import sys
+
+text = "Windows PowerShell \n Copyright (C) Microsoft Corporation. All rights reserved.\nTry the new crossplatform PowerShell  \nWindows PowerShell\nCopyright (C) Microsoft Corporation. All rights reserved. \n".upper()
+
+Буква = {i:text.count(i) for i in text}
+del Буква[" "]
+del Буква["."]
+del Буква["("]
+del Буква[")"]
+
+
+xdata = list(Буква.keys())
+xdata.sort()
+ydata = [Буква[i] for i in xdata]
+pylab.bar(xdata, ydata) 
+pylab.title("Windows PowerShell")
+pylab.savefig(sys.path[0]+"/lib7-2.png")
