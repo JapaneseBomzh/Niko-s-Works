@@ -1,0 +1,13 @@
+import requests
+from bs4 import BeautifulSoup
+url=input("Введите URL сайта: ")
+r = requests.get(url)
+soup = BeautifulSoup(r.content)
+print(len(soup.get_text()))
+print ("Частота Html-тегів: " +str(len(soup.find_all('html'))))
+print ("Кількість посилань: " +str(len(soup.find_all('a'))))
+y=input("Вивести посилання (y/n) " )
+if y =="y":
+ for link in soup.find_all('a'):
+    print(link.get('href'))
+print ("Кількість зображень: " +str(len(soup.find_all('img'))))
