@@ -1,0 +1,27 @@
+#1
+import random
+line1='Кіт ','Вовк ','Лис '
+line2='сів','побіг','встав'
+line3=' в лісі',' на полі',' біля річки'
+print(random.choice(line1)+random.choice(line2)+random.choice(line3))
+#2
+Рядки = 0
+Слова = 0
+Букви = 0
+for Рядок in open('text.txt'):
+ Рядки += 1
+ Букви += len(Рядок)
+ pos = 'out'
+ for Буква in Рядок:
+  if Буква != ' ' and pos == 'out':
+    Слова += 1
+    pos = 'in'
+  elif Буква == ' ':
+    pos = 'out'
+Пропуск = ( Букви-1)
+Символи=( Букви + Пропуск)
+
+print("Рядки:",  Рядки)
+print("Слова:", Слова)
+print("Букви:", Букви)
+print('Символи:', Символи)
