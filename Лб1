@@ -1,0 +1,20 @@
+#1
+import math
+x=int(input("X " ))
+z=(2*math.tan(x)-x**0.5)/x
+print("z= "+str(z))
+#2
+x=int(input("X "))
+y=int(input("Y "))
+print (sum( i for i in range (x,y+1) if not i%3))
+
+#3
+x=int(input("X "))
+y=int(input("Y "))
+print (min( i for i in range (x,y+1) if not i<0))
+#print (math.prod( i for i in range (x,y+1) if not i==0))
+for i in range (x,y+1):
+    if not i==0:
+        a = []
+        a.append(i)
+        b=print (a,end=" ")
