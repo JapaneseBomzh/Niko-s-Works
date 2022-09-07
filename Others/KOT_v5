@@ -13,7 +13,7 @@ list_unend =['Приближаемся к конечику!!','Брызгалк�
 true = 0
 print("." "."".""."".""."".""."".""."".""."".""."".""."".""."  ),print("." "."".""."".""."".""."".""."".""."".""."".""."".""."  ), time.sleep(3)
 time.sleep(3),
-print("loading KOTLYAR V5"),time.sleep(5),print("loading complite!"),time.sleep(1),print(Fore.CYAN+"Добрый день!")
+print("loading KOT V5"),time.sleep(5),print("loading complite!"),time.sleep(1),print(Fore.CYAN+"Добрый день!")
 time.sleep(0.5),print("Ну что , товарищи-матросики , самостоятельная работа!"),time.sleep(1)
 while True:
    try:
