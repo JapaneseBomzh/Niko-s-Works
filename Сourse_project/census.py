@@ -1,40 +1,80 @@
 import openpyxl
 from adress_list import Daddress,DOblast
+from question_list import question_list
+question,error=question_list()
+
 #Ім'я
-name = input('Ім\'я українською мовою. Будь ласка, вказуйте ТОЧНО так само, як вказано в документі, що посвідчує особу.\n')
+print(question[0])
+name = input()
 
 #Призвище
-surname = input('Прізвище українською мовою. Будь ласка, вказуйте ТОЧНО так само, як вказано в документі, що посвідчує особу.\n')
+print(question[1])
+surname = input()
  
 #По батькові
-fathers_name_q = input("Чи є у Вас по батькові? (1 - так, 2 - ні): \n")
+print(question[2])
+fathers_name_q = input()
 while fathers_name_q not in ('1', '2'):
-    print("Введіть коректне значення ")
-    fathers_name_q = input('Чи є у Вас по батькові? (1 - так, 2 - ні): \n')
+    print(error[0])
+    print(question[2])
+    fathers_name_q = input()
 if fathers_name_q == "1":
-    fathers_name = input("По батькові українською мовою. Будь ласка, вказуйте ТОЧНО так само, як вказано в документі, що посвідчує особу.\n")
+    print(question[3])
+    fathers_name = input()
 else:
     fathers_name ="-"
 
 #Номер телефону
-phone = input('Введіть номер телефону у форматі XХХХХХХХХХ. \n')
+print(question[4])
+phone = input()
 while len(phone) != 10 or not phone.isdigit():
-    print("Номер телефону повинен містити 10 цифр\n")
-    phone = input('Введіть номер телефону у форматі XХХХХХХХХХ. \n')
+    print(error[1])
+    print(question[4])
+    phone = input()
 
 #Область,Район,Адреса
-print('Введіть адресу місця постійного проживання: \n')
-oblast = DOblast(1)
-rayon ,home_adress=Daddress(oblast)
+print(question[5])
+print(question[6])
+oblasti=DOblast(0)
+while True:
+    for i, oblast in enumerate(oblasti):
+        print(f"{i+1} - {oblast}")
+    try:
+        num = int(input())
+        if num < 1 or num > len(oblasti):
+            print(error[2], len(oblasti))
+            continue
+        oblast = oblasti[num-1]
+        break
+    except ValueError:
+        print(error[2], len(oblasti))
+        continue
+print(question[7])
+rayoni=Daddress(oblast)
+while True:
+    try:
+        for i, rayon in enumerate(rayoni):
+            print(f"{i+1} - {rayon}")
+        rayon = rayoni[int(input()) - 1]
+        break
+    except IndexError:
+            print(error[3])
+    except ValueError:
+            print(error[4])
+print(question[8])
+home_adress=input()
 
 #2 - Стать
-gender = input('Будь ласка, зазначте стать . Будь ласка, оберіть одну відповідь із запропонованих нижче. \n 1 - чоловіча\n2 - жіноча\n3 - Небінарна \n4 - Інша\n5 - Не хочу говорити \n')
+print(question[9])
+gender = input()
 while gender not in ('1', '2', '3', '4', '5'):
-    print("Введіть коректне значення статі(Число)")
-    gender = input('Будь ласка, зазначте стать . Будь ласка, оберіть одну відповідь із запропонованих нижче. \n 1 - чоловіча\n2 - жіноча\n3 - Небінарна \n4 - Інша\n5 - Не хочу говорити \n')
+    print(error[5])
+    print(question[9])
+    gender = input()
 
 #4 - Дата Народження
-birthdate = input('Введіть дату народження (дд/мм/рррр): \n')
+print(question[10])
+birthdate = input()
 while True:
     try:
         day, month, year = map(int, birthdate.split('/'))
@@ -42,53 +82,84 @@ while True:
             raise ValueError
         break
     except ValueError:
-        print("Введіть коректний формат дати народження (дд/мм/рррр)\n")
-        birthdate = input('Введіть дату народження (дд/мм/рррр): \n')
+        print(error[6])
+        print(question[10])
+        birthdate = input()
 
 #4 - Скільки виповнилось років
-age = int(input("Введіть Ваший повний вік: \n"))
+print(question[11])
+age = int(input())
 
 #5 - Місце народження
-print('Введіть місце народження: \n')
-birthplace = DOblast(2)
-
+print(question[12])
+birthplaces = DOblast(1)
+while True:
+    for i, birthplace in enumerate(birthplaces):
+        print(f"{i+1} - {birthplace}")
+    try:
+        print(question[6])
+        num = int(input())
+        if num < 1 or num > len(birthplaces):
+            print(error[2], len(birthplaces))
+            continue
+        birthplace = birthplaces[num-1]
+        break
+    except ValueError:
+        print(error[2], len(birthplaces))
+    continue
+if birthplace == "Інша держава":
+    print(question[13])
+    birthplace = input()
+ 
 #6 - Етнічне походження
-ethnicity = input('Введіть етнічне походження (вкажіть національність або етнічну групу): \n')
+print(question[14])
+ethnicity = input()
 
 #7 - Рідна мова
-native_language = input('Введіть Вашу рідну мову: \n')
+print(question[15])
+native_language = input()
 if native_language.lower() != 'українська': #7 - Володіння українською мовою
-    ukrainian = input('Володієте українською мовою? (1 - так, 2 - ні): \n')
+    print(question[16])
+    ukrainian = input()
 else:
     ukrainian = "1"
-other_language = input('Введіть іншу мову, якою Ви вільно володієте: \n')#7 - Інша мова
+print(question[17])
+other_language = input()#7 - Інша мова
 
 #8 - Громадянство
-сitizenship = input('Введіть Ваше громадянство \n1 - Україна \n2 - без громадянства \n3 - інша держава\n')
+print(question[18])
+сitizenship = input()
 while сitizenship not in ('1', '2', '3'): 
-    print("Введіть коректне значення ")
-    сitizenship  = input('Введіть Ваше громадянство \n1 - Україна \n2 - без громадянства \n3 - інша держава\n')
+    print(error[0])
+    print(question[18])
+    сitizenship  = input()
 if сitizenship == "3":
-    сitizenship=input("Введіть Вашу країну , де Ви маєте громадянство:\n")
+    print(question[19])
+    сitizenship=input()
 
 #9 - Сімейний стан
 if age >= 15:    
     marital_statuses = ["1", "2", "3", "4", "5", "6"]
-    marital_status = input("Ваш сімейний стан (для осіб віком 15 років і старших) - \n1 ніколи не перебував(ла) у шлюбі, \n2 перебуваю у зареєстрованому шлюбі, \n3 перебуваю у незареєстрованому шлюбі, \n4 удівець, удова, \n5 розлучений(на), \n6 розійшовся(лася): ")
+    print(question[20])
+    marital_status = input()
     while marital_status not in marital_statuses:
-        print("Введіть коректний сімейний стан")
-        marital_status = input("Ваш сімейний стан (для осіб віком 15 років і старших) - \n1 ніколи не перебував(ла) у шлюбі, \n2 перебуваю у зареєстрованому шлюбі, \n3 перебуваю у незареєстрованому шлюбі, \n4 удівець, удова, \n5 розлучений(на), \n6 розійшовся(лася): ")
+        print(error[7])
+        print(question[20])
+        marital_status = input()
 else:marital_status ="-"
 
 #10 - Освіта
 if age >= 6:
-    education = input("Ваша освіта: \n1 повна вища (вища);\n2 базова вища ;\n3 початкова вища(середня спеціальна);\n4 незакінчена вища(для осіб, які закінчити навчання до 1996 року) ;\n5 повна загальна середня(середня загаьна);\n6 базова загальна середня(неповна середня) ;\n7 початкова загальна (початкова) ;\n8 не маю початкової загальної ;\n9 неписьменний(на) ")
+    print(question[21])
+    education = input()
     while education not in ["1", "2", "3", "4", "5", "6", "7", "8", "9"]:
-        print("Некоректне значення. Будь ласка, введіть число від 1 до 9.")
-        education = input("Ваша освіта: \n1 повна вища (вища);\n2 базова вища ;\n3 початкова вища(середня спеціальна);\n4 незакінчена вища(для осіб, які закінчити навчання до 1996 року) ;\n5 повна загальна середня(середня загаьна);\n6 базова загальна середня(неповна середня) ;\n7 початкова загальна (початкова) ;\n8 не маю початкової загальної ;\n9 неписьменний(на) ")
+        print(error[8])
+        print(question[21])
+        education = input()
     while True:
         try:
-            education_info = input("Введіть назву навчального закладу, кількість класів(курсів) та рік закінчення (в такому форматі: 'Назва закладу, кількість класів(курсів)(число), рік(число)')\nЯкщо  незакінчував ніякий навчальий заклад \"-\" \n")
+            print(question[22])
+            education_info = input()
             if education_info == "-":
                 school = "-";classes = "-";eyear = "-"
                 break
@@ -96,44 +167,52 @@ if age >= 6:
                 school, classes, eyear = education_info.split(", ")
                 break
         except ValueError:
-            print("Ви ввели неправильний формат даних. Спробуйте ще раз.")
+            print(error[9])
 else: education = "-"; education_info = "-"
+
 #11 - Чи закінчили п-т навч. заклад? 
-if age >= 15:    
-    vocational_school = input("Ви закінчили професійно-технічний навчальний заклад (введіть 1 для так або 2 для ні): ")
+if age >= 15:
+    print(question[23])    
+    vocational_school = input()
     while vocational_school not in ["1", "2"]:
-        print("Некоректне значення. Будь ласка, введіть 1 для так або 2 для ні.")
-        vocational_school = input("Ви закінчили професійно-технічний навчальний заклад (введіть 1 для так або 2 для ні): ")    
+        print(error[10])
+        print(question[23])
+        vocational_school = input()    
 else: vocational_school ="-"
 
 #12 - Тип навчального закладу
 if age >= 6: #???
-    education_type = input("Тип навчального закладу, в якому Ви навчаєтесь (для осіб віком 6 років і старших):\n1 - вищий\n2 - професійно-технічний\n3 - загальноосвітній\n4 - інший навчальний заклад (курси)\n5 - не навчаюсь\nДля осіб віком до 7 років, які не відвідують школу вказати, чи відвідують дошкільний заклад:\n6 - так\n7 - ні ")
+    print(question[24]) 
+    education_type = input()
     while education_type not in ["1", "2", "3", "4", "5", "6", "7"]:
-         print("Некоректне значення. Будь ласка, введіть число від 1 до 7.")
-         education_type = input("Тип навчального закладу, в якому Ви навчаєтесь (для осіб віком 6 років і старших):\n1 - вищий\n2 - професійно-технічний\n3 - загальноосвітній\n4 - інший навчальний заклад (курси)\n5 - не навчаюсь\n Для осіб віком до 7 років, які не відвідують школу вказати, чи відвідують дошкільний заклад:\n 6 	так \n7 ні ")
+         print(error[11])
+         print(question[24]) 
+         education_type = input()
 else: education_type ="-"
 
 #13 - Джерела засобів існування
 set_chosen_sources = set()
 while True:
-    chosen_source = input("Виберіть джерело засобів існування:\n1 - робота на підприємстві, в організації, установі, селянському (фермерському) господарстві\n2 - робота у окремих громадян\n3 - робота на власному підприємстві\n4 - робота на індивідуальній основі\n5 - робота у власному селянському (фермерському) господарстві\n6 - робота на сімейному підприємстві без оплати праці\n7 - робота в особистому підсобному господарстві\n8 - прибуток від власності\n9 - пенсія\n10 - стипендія\n11 - допомога (крім допомоги по безробіттю)\n12 - допомога по безробіттю\n13 - інший вид державного забезпечення\n14 - на утриманні інших осіб\n15 - інше джерело\n")
+    print(question[25]) 
+    chosen_source = input()
     if chosen_source.isdigit() and chosen_source in ('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15'):
         set_chosen_sources.add(chosen_source)
     else:
-        print("Некоректне значення. Будь ласка, введіть число від 1 до 15.")
+        print(error[12])
     chose = input(f"Обрані джерела засобів існування: {set_chosen_sources}\nБажаєте додати ще? (1 - так, 2 - ні): ")
     while chose not in ('1', '2'):
-        print("Некоректне значення.") 
+        print(error[13])
         chose = input(f"Обрані джерела засобів існування: {set_chosen_sources}\nБажаєте додати ще? (1 - так, 2 - ні): ")
     if chose == '2':
         break
 
 #13 - Номер основного джерела засобів існування
-main_source = input("Вказати номер основного джерела засобів існування (1-15): ")
+print(question[26]) 
+main_source = input()
 while main_source not in set_chosen_sources:
-    print("Некоректне значення.") 
-    main_source = input("Вказати номер основного джерела засобів існування (1-15): ")
+    print(error[13]) 
+    print(question[26]) 
+    main_source = input()
 
 #Збереження даних
 wb = openpyxl.load_workbook('census.xlsx')
