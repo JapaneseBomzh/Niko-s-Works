@@ -1,5 +1,5 @@
 import openpyxl
-from adress_list import Daddress,DOblast
+from adress_list import def_address,def_Oblast
 from question_list import question_list
 question,error=question_list()
 
@@ -7,7 +7,7 @@ question,error=question_list()
 print(question[0])
 name = input()
 
-#Призвище
+#Прізвище
 print(question[1])
 surname = input()
  
@@ -35,7 +35,7 @@ while len(phone) != 10 or not phone.isdigit():
 #Область,Район,Адреса
 print(question[5])
 print(question[6])
-oblasti=DOblast(0)
+oblasti=def_Oblast(0)
 while True:
     for i, oblast in enumerate(oblasti):
         print(f"{i+1} - {oblast}")
@@ -50,7 +50,7 @@ while True:
         print(error[2], len(oblasti))
         continue
 print(question[7])
-rayoni=Daddress(oblast)
+rayoni=def_address(oblast)
 while True:
     try:
         for i, rayon in enumerate(rayoni):
@@ -92,7 +92,7 @@ age = int(input())
 
 #5 - Місце народження
 print(question[12])
-birthplaces = DOblast(1)
+birthplaces = def_Oblast(1)
 while True:
     for i, birthplace in enumerate(birthplaces):
         print(f"{i+1} - {birthplace}")
@@ -161,10 +161,10 @@ if age >= 6:
             print(question[22])
             education_info = input()
             if education_info == "-":
-                school = "-";classes = "-";eyear = "-"
+                school = "-";classes = "-";education_year = "-"
                 break
             else:
-                school, classes, eyear = education_info.split(", ")
+                school, classes, education_year = education_info.split(", ")
                 break
         except ValueError:
             print(error[9])
